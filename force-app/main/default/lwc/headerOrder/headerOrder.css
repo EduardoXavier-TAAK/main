@@ -1,0 +1,10 @@
+template{
+    padding: 1px;
+}
+
+img {
+    padding: 1px;
+    height: 25px;
+    width: 100vw;
+    border-radius: 15px;
+}

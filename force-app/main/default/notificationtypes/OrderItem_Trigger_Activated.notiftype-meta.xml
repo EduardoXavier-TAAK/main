@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomNotificationType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customNotifTypeName>OrderItem_Trigger_Activated</customNotifTypeName>
+    <description>Notifies the user when the OrderItem before-insert trigger runs.</description>
+    <desktop>true</desktop>
+    <masterLabel>OrderItem Trigger Activated</masterLabel>
+    <mobile>true</mobile>
+</CustomNotificationType>
