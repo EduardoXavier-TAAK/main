@@ -18,8 +18,8 @@ public with sharing class Main {
             if(!orderItemValidation.validateOrderItem(i)) continue;
             
             i.UnitPrice = (i.ListPrice + i.Shipping_Cost__c)
-                 * (1 + i.Tax_Percentage__c / 100)
-             * (1 + i.Margin_Percentage__c / 100);
+                                       * (1 + i.Tax_Percentage__c / 100)
+                                       * (1 + i.Margin_Percentage__c / 100);
             
             i.Discount__c = (i.TotalPrice - i.UnitPrice) / i.TotalPrice;
             
