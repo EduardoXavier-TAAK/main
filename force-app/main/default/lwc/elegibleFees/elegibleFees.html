@@ -1,0 +1,35 @@
+<template>
+    
+    <div class="card slds-var-p-around_large">
+                <div class="slds-grid_align-space">
+                    <div class="slds-var-m-bottom_x-large slds-var-m-top_x-large">
+                        <div class="fee-card">
+                        <h3 class="slds-var-m-bottom_x-small subtitle">Taxas Elegíveis</h3>
+                            <template for:each={taxesFees} for:item="fee">
+                                <p class="" key={fee.Name}>{fee.Name} </p>
+                            </template>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="slds-var-m-bottom_x-large slds-var-m-top_x-large">
+                        <h3 class="slds-var-m-bottom_x-small subtitle">Fretes Elegíveis</h3>
+                        <div class="fee-card">
+                            <template for:each={shippingFees} for:item="fee">
+                                <p class="" key={fee.Name}>{fee.Name} </p>
+                            </template>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="slds-var-m-bottom_x-large slds-var-m-top_x-large">
+                        <h3 class="slds-var-m-top_small slds-var-m-bottom_x-small subtitle">Margens Elegíveis</h3>
+                        <div class="fee-card">
+                            <template for:each={marginFees} for:item="fee">
+                                <p class="" key={fee.Name}>{fee.Name} </p>
+                            </template>
+                        </div>
+                        <hr>
+                    </div>
+                    
+                </div>
+        </div>
+</template>

@@ -1,5 +1,5 @@
 public with sharing class MarginHandler {
-    SelectMarginHelper selectMarginHelper = new SelectMarginHelper();
+    private final SelectMarginHelper selectMarginHelper = new SelectMarginHelper();
     
     public MarginHandler() {}
     
@@ -21,11 +21,9 @@ public with sharing class MarginHandler {
             orderIds.add(i.OrderId);
         }
         
-        Map<Id, Product2> products = new Map<Id, Product2>([
-        SELECT Id, Product_Hierarchy__c FROM Product2 WHERE Id IN :productsId
-    ]);
+        Map<Id, Product2> products = new Map<Id, Product2>([ SELECT Id, Product_Hierarchy__c FROM Product2 WHERE Id IN :productsId ]);
         
-        for(Product2 p : products.values()) hierarchysId.add(p.Product_Hierarchy__c);
+        for (Product2 product : products.values()) hierarchysId.add(product.Product_Hierarchy__c);
         
         Map<Id, Order> orderMap = new Map<Id, Order>([
         SELECT Id,
@@ -56,13 +54,17 @@ public with sharing class MarginHandler {
                 Value__c, 
                 Product__c, 
                 Product_Hierarchy__c,
-                Name 
+                Name,
+                CreatedDate
         FROM Margin__c
         WHERE (Product__c IN :productsId  OR Product_Hierarchy__c IN :hierarchysId)
         AND (Account__c IN :clientsId OR Account_Group__c IN :groupIds)
+        AND (City__c IN :cityIds OR State__c IN :stateIds OR Country__c IN :countryIds)
         ];
         
         
-        for(OrderItem i : triggerNew) { selectMarginHelper.selectMargin(i, orderMap, productMargin); }
+        for(OrderItem i : triggerNew) {
+            selectMarginHelper.selectMargin(i, orderMap, products, productMargin);
+        }
     }
 }

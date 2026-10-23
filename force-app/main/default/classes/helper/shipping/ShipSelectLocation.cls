@@ -1,26 +1,28 @@
 public with sharing class ShipSelectLocation {
     
-    public void selectFeeByLocation(OrderItem orderProd, Map<Id, Order> orderMap, List<Shipping_Fee__c> shipFee) {
+    public void selectFeeByLocation(OrderItem orderProd, Map<Id, Order> orderMap, Map<Id, Product2> products, List<Shipping_Fee__c> shipFee) {
         Shipping_Fee__c bestFee;
+        Integer bestPriority = 0;
         
         Account_Address__c address = orderMap.get(orderProd.OrderId).Account_Address__r;
+        Product2 product = products.get(orderProd.Product2Id);
         
         Id city = address.City__c;
         Id state = address.City__r.State__c;
         Id country = address.City__r.State__r.Country__c;
         
+        Integer temp = 0;
+        
         for(Shipping_Fee__c j : shipFee) {
-
-            Integer bestPriority = 0;
             Integer priority = 0;
-
+            
             boolean matchesProduct = j.Product__c == orderProd.Product2Id;
-            boolean matchesHierarchy = j.Product_Hierarchy__c == orderProd.Product2.Product_Hierarchy__c;
-
+            boolean matchesHierarchy = j.Product__c == null && j.Product_Hierarchy__c == product.Product_Hierarchy__c;
+            
             boolean matchesCity = j.City__c != null && j.City__c == city;
-            boolean matchesState = j.State__c != null && j.State__c == state;      
+            boolean matchesState = j.State__c != null && j.State__c == state;
             boolean matchesCountry = j.Country__c != null && j.Country__c == country;
-
+            
             if (matchesProduct) {
                 if (matchesCity) { priority = 6; } else
                 
@@ -40,12 +42,17 @@ public with sharing class ShipSelectLocation {
             if (priority > bestPriority) {
                 bestPriority = priority;
                 bestFee = j;
+                
+            } else if(priority == temp && bestFee != null){
+                if(j.CreatedDate > bestFee.CreatedDate) bestFee = j;
             }
+            
         }
+        
         
         if(bestFee != null) {
             orderProd.Shipping_Cost__c = bestFee.Value__c;
-
+            
             orderProd.Fee_Name__c = bestFee.Name;
         }
     }

@@ -24,7 +24,7 @@ public with sharing class OrderItemValidation {
             isValid = false;
         }
         
-        if(i.ListPrice == null || i.ListPrice <= 0) {
+        if(i.UnitPrice == null || i.Unitprice <= 0) {
             i.addError('O preço do produto deve ser maior que zero.');
             isValid = false;
         }

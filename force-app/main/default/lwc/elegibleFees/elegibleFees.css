@@ -1,0 +1,39 @@
+:host {
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.num {
+    color: #0f7de5; 
+    font-size: 3.2rem;
+    font-weight: 900;
+}
+
+
+.description {
+    color: #2b2826;
+    font-size: 0.8rem;
+    align-self: center;
+}
+
+.title {
+    background-color: rgb(236, 234, 234);
+    font-size: 1.2rem;
+    border-radius: 0.40rem;
+    padding: 9px;
+    border-bottom: #2b2826;
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.fee-card {
+    border: .5px gray;
+    border-radius: 5px;
+}

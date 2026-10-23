@@ -1,0 +1,20 @@
+<template>
+  <div class="card slds-var-p-around_large">
+    <div class="slds-list_horizontal title colorGray13 slds-var-m-bottom_x-small">
+      <img src={cam} class="slds-var-m-right_small" style="width:25px" alt="caminhao icon">
+      <div>
+        <h3 class="slds-var-m-left_xx-medium">
+          Dias restantes para a entrega
+        </h3>
+      </div>
+    </div>
+    <div style="width: 100%;" class="slds-text-align_center">
+      <strong>
+        <h1 draggable="true" class="num slds-grid_align-center slds-var-m-bottom_x-small slds-var-m-top_x-small">
+          { deliver }
+        </h1>
+      </strong>
+    </div>
+    <h4 class="description slds-var-m-bottom_x-small">Pedido: {orderNumber}</h4>
+  </div>
+</template>
