@@ -13,6 +13,10 @@ public with sharing class OrderUpdateHandler {
                 continue;
             }
 
+            if(oldOrder.Status == 'Activated'){
+                order.addError('Não é possível alterar o pedido com status ativo!');
+            }
+
             if (oldOrder.Account_Address__c != order.Account_Address__c) {
                 changedOrderIds.add(order.Id);
             } 
