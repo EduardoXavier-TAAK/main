@@ -15,6 +15,7 @@ public with sharing class OrderUpdateHandler {
 
             if(oldOrder.Status == 'Activated'){
                 order.addError('Não é possível alterar o pedido com status ativo!');
+                continue;
             }
 
             if (oldOrder.Account_Address__c != order.Account_Address__c) {
