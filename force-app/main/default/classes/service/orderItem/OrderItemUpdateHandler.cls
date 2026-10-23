@@ -5,14 +5,13 @@ public with sharing class OrderItemUpdateHandler {
     
     public void updateOrderItem( List<OrderItem> triggerNew, List<OrderItem> triggerOld) {
        if (bypassCustomizations) return;
-       
+
         Map<Id, OrderItem> oldItems = new Map<Id, OrderItem>(triggerOld);
         
         for (OrderItem item : triggerNew) {
             OrderItem oldItem = oldItems.get(item.Id);
 
             if(item.Order.Account_Address__c == oldItem.Order.Account_Address__c){
-                Decimal basePrice;
                               
                 Boolean shippingChanged = oldItem.Shipping_Cost__c != item.Shipping_Cost__c;
                 Boolean taxChanged = oldItem.Tax_Percentage__c != item.Tax_Percentage__c;

@@ -15,6 +15,8 @@ export default class DaysToDeliver extends LightningElement {
     cam = caminhao
     relogio = Relogio
 
+    const 
+
     get deliver(){
         return this.registro.data ? getFieldValue(this.registro.data, deliver) : '';
     }
