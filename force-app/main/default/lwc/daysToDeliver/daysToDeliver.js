@@ -12,6 +12,12 @@ export default class DaysToDeliver extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: [deliver, pedido] })
     registro;
 
+    changeColor() {
+        const elemento = this.template.querySelector('.num');
+        if (Number(deliver) <= 0) {
+            elemento.classList.toggle('red');
+        }
+    }
     cam = caminhao
     relogio = Relogio
 

@@ -1,3 +1,0 @@
-SELECT Id
-  FROM Shipping_Fee__c
-  WHERE Product__c != 'Order'

@@ -23,6 +23,10 @@
     font-weight: 900;
 }
 
+.red {
+  color: #f30f0f !important;     
+}
+
 
 .description {
     color: #2b2826;

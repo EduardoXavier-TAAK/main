@@ -22,7 +22,7 @@ private class ShippingFeeTest {
 
             List<OrderItem> ordersItems = [SELECT Id FROM OrderItem WHERE Product2Id = :pId.Id AND OrderId = :oId.Id];
 
-            Assert.areEqual(ordersItems.size() >= 200, true);
+            Assert.areEqual(ordersItems.size() >= 1000, true);
             Assert.areEqual(ordersItems.get(0).Fee_Name__c, 'São Caetano do Sul - Plantação');
             Assert.areEqual(ordersItems.get(0).Tax_Name__c, 'SP - Feijão 1Kg');
             Assert.areEqual(ordersItems.get(0).Margin_Name__c, 'SP - TAAK SP, Plantação');

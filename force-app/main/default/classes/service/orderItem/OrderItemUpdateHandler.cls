@@ -25,6 +25,9 @@ public with sharing class OrderItemUpdateHandler {
                    
                 if(marginChanged) item.Margin_Name__c = 'Margem Personalizada';
 
+                item.Price_Without_Margin__c = (item.ListPrice + item.Shipping_Cost__c) 
+                                                        * (1 + item.Tax_Percentage__c / 100);
+
                 item.UnitPrice = (item.ListPrice + item.Shipping_Cost__c)
                                                  * (1 + item.Tax_Percentage__c / 100)
                                                  * (1 + item.Margin_Percentage__c / 100);    

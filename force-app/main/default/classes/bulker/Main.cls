@@ -4,6 +4,7 @@ public with sharing class Main {
     MarginHandler marginHandler = new MarginHandler();
     OrderUpdateHandler orderUpdate = new OrderUpdateHandler();
     OrderItemValidation orderItemValidation = new OrderItemValidation();
+    OrderItemUpdateHandler orderItemHandler = new OrderItemUpdateHandler();
     
     public Main() { }
     
@@ -16,13 +17,14 @@ public with sharing class Main {
         
         for(OrderItem i : triggerNew) {
             if(!orderItemValidation.validateOrderItem(i)) continue;
+
+            i.Price_Without_Margin__c = (i.ListPrice + i.Shipping_Cost__c) * (1 + i.Tax_Percentage__c / 100);
             
             i.UnitPrice = (i.ListPrice + i.Shipping_Cost__c)
                                        * (1 + i.Tax_Percentage__c / 100)
                                        * (1 + i.Margin_Percentage__c / 100);
             
             i.Discount__c = (i.TotalPrice - i.UnitPrice) / i.TotalPrice;
-            
         }
     }
     
@@ -46,6 +48,7 @@ public with sharing class Main {
                     Fee_Name__c = orderItem.Fee_Name__c,
                     Tax_Name__c = orderItem.Tax_Name__c,
                     Margin_Name__c = orderItem.Margin_Name__c,
+                    Price_Without_Margin__c = orderItem.Price_Without_Margin__c,
                     UnitPrice = orderItem.UnitPrice,
                     Discount__c = orderItem.Discount__c
                 )
@@ -57,6 +60,11 @@ public with sharing class Main {
         } finally {
             OrderItemUpdateHandler.bypassCustomizations = false;
         }
+    }
+
+
+    public void updateOrderItem(List<OrderItem> triggerNew, List<OrderItem> triggerOld){ 
+        orderItemHandler.updateOrderItem(triggerNew, triggerOld);
     }
     
     

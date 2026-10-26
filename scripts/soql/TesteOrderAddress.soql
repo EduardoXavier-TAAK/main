@@ -1,2 +1,0 @@
-SELECT Account_Address__c.City__c
-  FROM Order
